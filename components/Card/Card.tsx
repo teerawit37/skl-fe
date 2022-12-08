@@ -9,7 +9,6 @@ interface ICardProps {
     start: string;
     end: string;
     img: string;
-    // uimg: string;
 }
 
 const universityList = [
