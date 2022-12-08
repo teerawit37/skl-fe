@@ -1,9 +1,7 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Card } from '../components/Card'
 import { AppLayout } from '../components/Layout'
-import jwt from 'jwt-decode'
 import { cookieParser } from '../utils/cookie'
+
+import { useSelector, useDispatch } from 'react-redux';
 
 export interface IPageProps {
   username: string,
@@ -12,6 +10,7 @@ export interface IPageProps {
 
 function Home(user: IPageProps) {
   const { username } = user;
+  const state = useSelector((state: any) => state.currentUser);
   return (
     <div className="skl-home">
       <div className='container'>
@@ -59,6 +58,8 @@ function Home(user: IPageProps) {
           <li className='skl-home__paragraph'>Send your code via link of git provider</li>
           <li className='skl-home__paragraph'>URL your website</li>
           <li className='skl-home__paragraph'>IP, username, password for connect DB</li>
+
+          <></>
 
         </div>
       </div>

@@ -55,6 +55,7 @@ const Card = ({ title, instructor, university, banner, start, end, img }: ICardP
                     </div>
                     <div className="skl-card__display d-none d-lg-flex mb-4">
                         <div className="skl-card__circle-img">
+                        //mock up (It's best to keep it in the cloud storage. And access with id)
                             <img className="skl-card__img" src={`/images/university/${university.toLowerCase()}.png`} />
                         </div>
                         <div className="skl-card__label">{mapUniversity(university)}</div>

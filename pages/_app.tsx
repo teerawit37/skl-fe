@@ -6,25 +6,19 @@ import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
 import { Provider } from 'react-redux'
 import PageWithLayoutType from '../components/Layout/pageWithLayouts';
-import store from '../redux/store';
 import Router, { useRouter } from 'next/router';
 import { ToastContainer } from 'react-toastify';
+import { store } from '../redux/store';
 
 type AppLayoutProps = AppProps & {
   Component: PageWithLayoutType
   pageProps: any
 }
+
 function MyApp({ Component, pageProps }: AppLayoutProps) {
   const router = useRouter();
   const Layout =
     Component.layout || ((children: ReactElement) => <>{children}</>)
-  // let data;
-  // if (typeof window !== 'undefined') {
-  //   data = localStorage.getItem("user")
-  //   if (data === null) {
-  //     router.push('/signin')
-  //   }
-  // }
 
   return (
     <Provider store={store}>
@@ -36,3 +30,7 @@ function MyApp({ Component, pageProps }: AppLayoutProps) {
   )
 }
 export default MyApp
+
+function createStore(rootReducer: any, arg1: any) {
+  throw new Error('Function not implemented.');
+}

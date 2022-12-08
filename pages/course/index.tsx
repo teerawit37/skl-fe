@@ -61,8 +61,7 @@ function Course(user: IPageProps) {
         } else {
             return (
                 <div className='skl-course__not-found-container my-4'>
-                    <div className="skl-course__not-found-title">No matching items found</div>
-                    <div className="skl-course__not-found-title skl-course__not-found-title--sub">Try changing your seach criteria</div>
+                    <div className="skl-course__not-found-title">No items found</div>
                 </div>
             )
         }

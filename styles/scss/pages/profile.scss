@@ -23,6 +23,7 @@
     @include element('container') {
         width: 100%;
         max-width: 500px;
+        margin-bottom: 100px;
     }
 
     @include element('group') {

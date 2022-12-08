@@ -1,6 +1,7 @@
-import { createStore } from 'redux'
-import bookReducer from './book/bookReducer'
+import { createStore } from "redux"
+import rootReducer from "./reducers"
 
-const store = createStore(bookReducer)
-
-export default store;
+export const store = createStore(
+    rootReducer,
+    {}
+)

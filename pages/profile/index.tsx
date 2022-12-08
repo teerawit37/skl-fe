@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import { useEffect, useState } from 'react';
 import { Button, IconButton } from '../../components/Button';
 import { Input } from '../../components/Input';
@@ -14,10 +12,17 @@ import { DatePicker } from 'antd';
 import type { DatePickerProps } from 'antd';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { toast } from 'react-toastify';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from "redux"
+import allActions from '../../redux/actions/index'
 
 dayjs.extend(customParseFormat);
 const dateFormat = 'YYYY-MM-DD';
 
+
+//mock up (It's best to keep it in the database. And sent via the API)
 const universityList = [
     {
         label: 'มหาวิทยาลัยธรรมศาสตร์',
@@ -37,6 +42,7 @@ const universityList = [
     }
 ]
 
+//mock up (It's best to keep it in the database. And sent via the API)
 const genderList = [
     {
         label: 'none',
@@ -72,6 +78,9 @@ function Profile() {
     const { value: isEditNickName, onClick: toggleEditNickName } = useToggle(false);
     const { value: isEditUniversity, onClick: toggleEditUniversity } = useToggle(false);
     const { value: isEditGender, onClick: toggleEditGender } = useToggle(false);
+
+    const dispatch = useDispatch()
+    const { setUser } = bindActionCreators(allActions.userActions, dispatch)
 
     const fetchProfile = () => {
         UserService.getProfile().then(
@@ -109,7 +118,15 @@ function Profile() {
         }
         UserService.updateProfile(id, payload).then(
             () => {
+                setUser({
+                    id,
+                    firstname,
+                    lastname,
+                    role,
+                    img
+                })
                 fetchProfile()
+                toast.success('Profile updated')
             }
         )
     }

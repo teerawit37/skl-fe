@@ -1,16 +1,14 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import { useRouter } from 'next/router';
-import { ReactElement, useState } from 'react';
 import { Button, IconButton } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { AuthLayout } from '../../components/Layout';
-import { Select } from '../../components/Select';
 import { useInput } from '../../hooks/useInput';
 import AuthService from '../../services/auth.service';
 
-import { connect } from 'react-redux'
-import { addBook, buyBook } from '../../redux/book/bookAction';
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from "redux"
+import allActions from '../../redux/actions/index'
+
 import { toast } from 'react-toastify';
 
 const universityList = [
@@ -37,10 +35,15 @@ function Signin() {
     const { value: username, onChange: onUsernameChange, validate: userValid } = useInput('');
     const { value: password, onChange: onPasswordChange, validate: passValid } = useInput('');
 
+    const dispatch = useDispatch()
+
+    const { setUser } = bindActionCreators(allActions.userActions, dispatch)
+
     const handlerSignin = () => {
         validate()
         AuthService.signin(username, password).then(
             (res) => {
+                setUser(res.data)
                 router.push('/');
                 toast.success('you are logged in successfully')
             },
@@ -91,20 +94,20 @@ function Signin() {
     )
 }
 
-const mapStateToProps = (state: any) => {
-    return {
-        numOfBooks: state.numOfBooks
-    }
-}
+// const mapStateToProps = (state: any) => {
+//     return {
+//         numOfBooks: state.numOfBooks
+//     }
+// }
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        addBook: () => dispatch(addBook()),
-        buyBook: () => dispatch(buyBook())
-    }
-}
+// const mapDispatchToProps = (dispatch: any) => {
+//     return {
+//         addBook: () => dispatch(addBook()),
+//         buyBook: () => dispatch(buyBook())
+//     }
+// }
 
 Signin.layout = AuthLayout
 
 // export default Signin;
-export default connect(mapStateToProps, mapDispatchToProps)(Signin)
+export default Signin;
