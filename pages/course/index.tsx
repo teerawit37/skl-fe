@@ -27,12 +27,13 @@ function Course() {
     }
 
     const fetchCourseList = () => {
-        CourseService.getCourseList().then(
-            (res) => {
-                setFullCourseList(res.data)
-                setCourseList(res.data)
-            }
-        )
+        console.log('test')
+        // CourseService.getCourseList().then(
+        //     (res) => {
+        //         setFullCourseList(res.data)
+        //         setCourseList(res.data)
+        //     }
+        // )
     }
 
     useEffect(() => {

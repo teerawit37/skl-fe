@@ -75,27 +75,28 @@ function Profile() {
     const { value: isEditGender, onClick: toggleEditGender } = useToggle(false);
 
     const fetchProfile = () => {
-        UserService.getProfile().then(
-            (res) => {
-                const data = res.data[0];
-                setFirstName(data.firstname)
-                setLastName(data.lastname)
-                setNickname(data.nickname)
-                setUniversity(data.university)
-                setGender(data.gender)
-                setRole(data.role)
-                setId(data._id)
-                setImg(data.img)
-                if (data.birthday !== '') {
-                    const day = dayjs(data.birthday).format(dateFormat)
-                    setBirthday(day)
-                } else {
-                    const current = new Date();
-                    const day = dayjs(current).format(dateFormat)
-                    setBirthday(day)
-                }
-            }
-        )
+        console.log('test')
+        // UserService.getProfile().then(
+        //     (res) => {
+        //         const data = res.data[0];
+        //         setFirstName(data.firstname)
+        //         setLastName(data.lastname)
+        //         setNickname(data.nickname)
+        //         setUniversity(data.university)
+        //         setGender(data.gender)
+        //         setRole(data.role)
+        //         setId(data._id)
+        //         setImg(data.img)
+        //         if (data.birthday !== '') {
+        //             const day = dayjs(data.birthday).format(dateFormat)
+        //             setBirthday(day)
+        //         } else {
+        //             const current = new Date();
+        //             const day = dayjs(current).format(dateFormat)
+        //             setBirthday(day)
+        //         }
+        //     }
+        // )
     }
 
     const handleUpdateProfile = () => {

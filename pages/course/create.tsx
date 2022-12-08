@@ -59,18 +59,19 @@ function CreateCourse() {
     const [end, setEnd] = useState<string>('');
 
     const fetchProfile = () => {
-        UserService.getProfile().then(
-            (res) => {
-                const data = res.data[0];
-                setFirstName(data.firstname)
-                setLastName(data.lastname)
-                setNickname(data.nickname)
-                setUniversity(data.university)
-                setRole(data.role)
-                setId(data._id)
-                setImg(data.img)
-            }
-        )
+        console.log('test')
+        // UserService.getProfile().then(
+        //     (res) => {
+        //         const data = res.data[0];
+        //         setFirstName(data.firstname)
+        //         setLastName(data.lastname)
+        //         setNickname(data.nickname)
+        //         setUniversity(data.university)
+        //         setRole(data.role)
+        //         setId(data._id)
+        //         setImg(data.img)
+        //     }
+        // )
     }
 
     const handleCreateCourse = () => {
