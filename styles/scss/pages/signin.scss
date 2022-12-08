@@ -16,9 +16,18 @@
     @include element('group'){
         display: flex;
         flex-direction: column;
-        margin-bottom: 16px;
     }
     @include element('btn'){
         width: 100%;
+    }
+    @include element('hint'){
+        color: $--color-pearly-white-100;
+       text-align: center;
+       font-size: 12px;
+       font-weight: 500;
+       padding: 4px 0;
+       @include modifier('active'){
+        color: $--color-red-200;
+       }
     }
 }

@@ -11,13 +11,6 @@ class AuthService {
             }, { 
                 withCredentials: true,
             })
-            .then(response => {
-                if (response.data.token) {
-                    // localStorage.setItem("user", JSON.stringify(response.data));
-                    Cookies.set('access_token', response.data.token)
-                }
-                return response.data;
-            });
     }
     signout() {
         Cookies.remove('access_token')

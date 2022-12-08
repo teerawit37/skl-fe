@@ -8,11 +8,37 @@ interface ICardProps {
     banner: string;
     start: string;
     end: string;
+    img: string;
+    // uimg: string;
 }
 
+const universityList = [
+    {
+        label: 'มหาวิทยาลัยธรรมศาสตร์',
+        value: 'TU'
+    },
+    {
+        label: 'มหาวิทยาลัยจุฬาลงกรณ์',
+        value: 'CU'
+    },
+    {
+        label: 'มหาวิทยาลัยศิลปากร',
+        value: 'SU'
+    },
+    {
+        label: 'มหาวิทยาลัยศรีนครินทรวิโรฒ',
+        value: 'SWU'
+    }
+]
 
 
-const Card = ({ title, instructor, university, banner, start, end }: ICardProps) => {
+
+const Card = ({ title, instructor, university, banner, start, end, img }: ICardProps) => {
+
+    const mapUniversity = (label: string) => {
+        const data = universityList.find((item) => item.value === label)
+        return data?.label;
+    }
     return (
         <div className="skl-card">
             <div className="skl-card__image-container">
@@ -21,8 +47,18 @@ const Card = ({ title, instructor, university, banner, start, end }: ICardProps)
             <div className="skl-card__container">
                 <div>
                     <div className="skl-card__title">{title}</div>
-                    <div className="skl-card__label">{instructor}</div>
-                    <div className="d-none d-lg-block skl-card__label mb-4">{university}</div>
+                    <div className="skl-card__display">
+                        <div className="skl-card__circle-img">
+                            <img className="skl-card__img" src={img} />
+                        </div>
+                        <div className="skl-card__label">{instructor}</div>
+                    </div>
+                    <div className="skl-card__display d-none d-lg-flex mb-4">
+                        <div className="skl-card__circle-img">
+                            <img className="skl-card__img" src={`/images/university/${university.toLowerCase()}.png`} />
+                        </div>
+                        <div className="skl-card__label">{mapUniversity(university)}</div>
+                    </div>
                 </div>
 
                 <div>

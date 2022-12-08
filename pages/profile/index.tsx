@@ -8,7 +8,6 @@ import { UploadProfile } from '../../components/Upload';
 import { Select } from '../../components/Select';
 import { useInput } from '../../hooks/useInput';
 import { useToggle } from '../../hooks/useToggle';
-// import DatePicker from "react-datepicker";
 import UserService from '../../services/user.service';
 import { convertToBase64 } from '../../utils/file';
 import { DatePicker } from 'antd';
@@ -206,7 +205,7 @@ function Profile() {
                             <div className="skl-profile__group">
                                 <div className="skl-profile__label">Gender</div>
                                 <div className='d-flex gap-1'>
-                                    <Select data={genderList} onChange={onGenderChange} value={gender} disabled={!isEditGender}>test</Select>
+                                    <Select data={genderList} onChange={onGenderChange} value={gender} disabled={!isEditGender}></Select>
                                     <IconButton
                                         icon={isEditGender ? 'skl-icon-check' : 'skl-icon-pencil'}
                                         onClick={toggleEditGender}

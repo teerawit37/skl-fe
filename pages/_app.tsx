@@ -1,5 +1,5 @@
 import '../styles/scss/main.scss';
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-toastify/dist/ReactToastify.css';
 import type { AppProps } from 'next/app';
 import { AppLayout, AuthLayout } from '../components/Layout';
 import { ReactElement, ReactNode } from 'react';
@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import PageWithLayoutType from '../components/Layout/pageWithLayouts';
 import store from '../redux/store';
 import Router, { useRouter } from 'next/router';
+import { ToastContainer } from 'react-toastify';
 
 type AppLayoutProps = AppProps & {
   Component: PageWithLayoutType
@@ -27,6 +28,7 @@ function MyApp({ Component, pageProps }: AppLayoutProps) {
 
   return (
     <Provider store={store}>
+      <ToastContainer />
       <Layout>
         <Component {...pageProps} />
       </Layout>

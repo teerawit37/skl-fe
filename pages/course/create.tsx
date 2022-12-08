@@ -16,26 +16,32 @@ import { useArray } from '../../hooks/useArray';
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { toast } from 'react-toastify';
 
 
 const categoryList = [
     {
-        label: 'none',
-        value: 'none'
+        label: 'Science',
+        value: 'science'
     },
     {
-        label: 'male',
-        value: 'male'
+        label: 'Technology',
+        value: 'technology'
     },
     {
-        label: 'female',
-        value: 'female'
+        label: 'Programming',
+        value: 'programming'
     },
     {
-        label: 'lgbtq+',
-        value: 'lgbtq+'
+        label: 'Data Science',
+        value: 'datascience'
+    },
+    {
+        label: 'UX/UI',
+        value: 'ux/ui'
     },
 ]
+
 type RangeValue = [Dayjs | null, Dayjs | null] | null;
 
 dayjs.extend(customParseFormat);
@@ -47,6 +53,7 @@ function CreateCourse() {
     const [banner, setBanner] = useState<string>('')
     const { value: title, onChange: onTitleChange } = useInput('');
     const { value: description, onChange: onDescriptionChange } = useInput('');
+    const { value: category, onChange: onCategoryChange, setInitailValue: setCategory } = useInput('science');
 
     // user
     const { value: firstname, setInitailValue: setFirstName } = useInput('');
@@ -74,20 +81,28 @@ function CreateCourse() {
     }
 
     const handleCreateCourse = () => {
-        const payload = {
-            title,
-            description,
-            instructor: firstname + ' ' + lastname,
-            university,
-            banner,
-            start,
-            end
-        }
-        CourseService.createCourse(payload).then(
-            () => {
-                router.push('/')
+        if (img === '' || firstname === '') {
+            toast.error("Please input your profile infomation before create course.");
+            router.push('/profile')
+        } else {
+            const payload = {
+                img,
+                title,
+                description,
+                instructor: firstname + ' ' + lastname,
+                university,
+                banner,
+                category,
+                start,
+                end,
             }
-        )
+            CourseService.createCourse(payload).then(
+                () => {
+                    toast.success("Course created");
+                    router.push('/course')
+                }
+            )
+        }
     }
 
     useEffect(() => {
@@ -142,6 +157,10 @@ function CreateCourse() {
                                 <Upload value={banner} defalut={''} onChange={onImageChange}></Upload>
                             </div>
                             <div className="skl-create__group">
+                                <div className="skl-create__label">Category</div>
+                                <Select data={categoryList} onChange={onCategoryChange} value={category}></Select>
+                            </div>
+                            <div className="skl-create__group">
                                 <div className="skl-create__label">Select Time</div>
                                 {/* {time} */}
                                 <TimePicker.RangePicker format="h:mm a" onChange={onTimeChange} className='skl-create__time-picker' />
@@ -163,15 +182,23 @@ export default CreateCourse;
 
 export async function getServerSideProps(context: any) {
     const user = context.req.cookies.access_token;
-    if(user === undefined){
-      return {
-        redirect: {
-          destination: '/signin',
-          permanent: false,
-        },
-      }
+    if (user === undefined) {
+        return {
+            redirect: {
+                destination: '/signin',
+                permanent: false,
+            },
+        }
+    }
+    if (user.role === 'student') {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        }
     }
     return {
-      props: {}, // will be passed to the page component as props
+        props: {}, // will be passed to the page component as props
     }
-  }
+}

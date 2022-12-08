@@ -1,5 +1,4 @@
-import Router, { useRouter } from "next/router";
-import Image from 'next/image';
+import { useRouter } from "next/router";
 import AuthService from '../../services/auth.service';
 import Link from "next/link";
 

@@ -11,6 +11,7 @@ import AuthService from '../../services/auth.service';
 
 import { connect } from 'react-redux'
 import { addBook, buyBook } from '../../redux/book/bookAction';
+import { toast } from 'react-toastify';
 
 const universityList = [
     {
@@ -33,15 +34,23 @@ const universityList = [
 
 function Signin() {
     const router = useRouter()
-    const { value: username, onChange: onUsernameChange } = useInput('');
-    const { value: password, onChange: onPasswordChange } = useInput('');
+    const { value: username, onChange: onUsernameChange, validate: userValid } = useInput('');
+    const { value: password, onChange: onPasswordChange, validate: passValid } = useInput('');
 
     const handlerSignin = () => {
+        validate()
         AuthService.signin(username, password).then(
-            () => {
+            (res) => {
                 router.push('/');
+                toast.success('you are logged in successfully')
+            },
+            error => {
+                toast.error('username or password is invalid')
             }
         )
+    }
+    const validate = () => {
+        return username !== '' || password !== ''
     }
 
     return (
@@ -58,7 +67,9 @@ function Signin() {
                                 value={username}
                                 onChange={onUsernameChange} />
                         </div>
+                        <div className={`skl-signin__hint ${userValid && 'skl-signin__hint--active'}`}>Please input username</div>
                     </div>
+
                     <div className="skl-signin__group mb-4">
                         <div className="skl-signin__label">Password</div>
                         <div className='d-flex gap-1'>
@@ -68,9 +79,11 @@ function Signin() {
                                 value={password}
                                 onChange={onPasswordChange} />
                         </div>
+                        <div className={`skl-signin__hint ${passValid && 'skl-signin__hint--active'}`}>Please input password</div>
+
                     </div>
                     <div className='d-flex justify-content-end'>
-                        <Button className='skl-signin__btn' onClick={handlerSignin}>Signin</Button>
+                        <Button disabled={passValid || userValid} className='skl-signin__btn' onClick={handlerSignin}>Signin</Button>
                     </div>
                 </div>
             </div>
@@ -86,8 +99,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        addBook : () => dispatch(addBook()),
-        buyBook : () => dispatch(buyBook())
+        addBook: () => dispatch(addBook()),
+        buyBook: () => dispatch(buyBook())
     }
 }
 

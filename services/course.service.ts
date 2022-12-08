@@ -1,5 +1,4 @@
 import axios from 'axios';
-import authHeader from './auth-header';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 class CourseService {
@@ -11,11 +10,9 @@ class CourseService {
     }
 
     async createCourse(payload: any) {
-        return await axios.post(API_URL + 'courses/', payload,
-            {
-                headers: authHeader(),
-                withCredentials: true
-            });
+        return await axios.post(API_URL + 'courses/', payload, {
+            withCredentials: true
+        });
     }
 }
 export default new CourseService();

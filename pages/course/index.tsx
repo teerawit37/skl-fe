@@ -10,8 +10,11 @@ import { AppLayout } from '../../components/Layout'
 import { useInput } from '../../hooks/useInput'
 import CourseService from '../../services/course.service';
 import { useRouter } from 'next/router';
+import { IPageProps } from '../index';
+import { cookieParser } from '../../utils/cookie';
 
-function Course() {
+function Course(user: IPageProps) {
+    const { username, role } = user;
     const router = useRouter()
     const { value, onChange } = useInput('');
     const [courseList, setCourseList] = useState<any>([])
@@ -79,10 +82,12 @@ function Course() {
                     </div>
                     {RenderList(courseList)}
                 </section>
-                <FloatButton
-                    onClick={() => router.push('/course/create')}
-                    className='skl-course__float-btn'
-                    tooltip={<div>Create Course</div>} />
+                {role !== 'student' &&
+                    <FloatButton
+                        onClick={() => router.push('/course/create')}
+                        className='skl-course__float-btn'
+                        tooltip={<div>Create Course</div>} />
+                }
             </div >
         </div >
     )
@@ -93,16 +98,16 @@ Course.layout = AppLayout
 export default Course;
 
 export async function getServerSideProps(context: any) {
-    const user = context.req.cookies.access_token;
-    if(user === undefined){
-      return {
-        redirect: {
-          destination: '/signin',
-          permanent: false,
-        },
-      }
+    const user = cookieParser(context.req.cookies.access_token);
+    if (user === undefined) {
+        return {
+            redirect: {
+                destination: '/signin',
+                permanent: false,
+            },
+        }
     }
     return {
-      props: {}, // will be passed to the page component as props
+        props: user, // will be passed to the page component as props
     }
-  }
+}

@@ -17,6 +17,22 @@
         border-radius: $--border-radius-1;
         overflow: hidden;
     }
+    @include element('circle-img') {
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-right: 6px;
+        background-color: $--color-primary-2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    @include element('display'){
+        display: flex;
+        align-items: center;
+        padding: 4px 0;
+    }
 
     @include element('image-container') {
         width: 100px;

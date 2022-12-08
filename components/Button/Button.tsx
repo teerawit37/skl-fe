@@ -4,16 +4,18 @@ interface Props {
     children?: React.ReactNode;
     onClick: () => void;
     className?: string;
+    disabled?: boolean;
 }
 
 const Button = ({
     children,
     onClick,
+    disabled = false,
     className = ''
   }: Props) => {
 
     return (
-        <button onClick={onClick} className={`skl-button ${className}`}>{children}</button>
+        <button disabled={disabled} onClick={onClick} className={`skl-button ${className} ${disabled && 'skl-button--disabled'}`}>{children}</button>
     );
 }
 
