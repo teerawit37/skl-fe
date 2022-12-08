@@ -8,7 +8,9 @@ class AuthService {
         return axios
             .post(API_URL + "auth/signin", {
                 username, password
-            }, { withCredentials: true })
+            }, { 
+                withCredentials: true,
+            })
             .then(response => {
                 if (response.data.token) {
                     // localStorage.setItem("user", JSON.stringify(response.data));
@@ -18,7 +20,7 @@ class AuthService {
             });
     }
     signout() {
-        localStorage.removeItem("user");
+        Cookies.remove('access_token')
     }
 
     // register(discord_id: string, user_name: string, email: string, twitter_id: string) {
