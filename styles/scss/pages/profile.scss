@@ -1,0 +1,33 @@
+@include block('profile') {
+    color: $--color-pearly-white-600;
+
+    @include element('title') {
+        font-size: 48px;
+        font-weight: 900;
+    }
+
+    @include element('label') {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+
+    @include element('instruct-label') {
+        font-size: 18px;
+        font-weight: 900;
+        margin-bottom: 4px;
+        color: $--color-pearly-white-500;
+        margin-top: 8px;
+    }
+
+    @include element('container') {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    @include element('group') {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 16px;
+    }
+}

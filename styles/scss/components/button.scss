@@ -1,0 +1,31 @@
+@include block('button') {
+    background-image: linear-gradient(90deg, $--color-yellow-200, $--color-yellow-300);
+    border-radius: $--border-radius-1;
+    border: none;
+    color: $--color-pearly-white-100;
+    padding: 0 24px;
+    font-size: 22px;
+    font-weight: 600;
+    height: 48px;
+    line-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@include block('icon-button') {
+    background-color: $--color-primary-2;
+    border-radius: $--border-radius-1;
+    box-shadow: $--box-shadow-1;
+    border: none;
+    color: $--color-pearly-white-100;
+    padding: 0 24px;
+    font-size: 22px;
+    font-weight: 500;
+    height: 48px;
+    line-height: 48px;
+
+    &:hover {
+        background-color: $--color-primary-3;
+    }
+}

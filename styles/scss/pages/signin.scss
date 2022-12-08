@@ -1,0 +1,24 @@
+@include block('signin'){
+    color: $--color-pearly-white-600;
+    @include element('title'){
+        font-size: 48px;
+        font-weight: 900;
+    }
+    @include element('label'){
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+    @include element('container'){
+        width: 100%;
+        max-width: 350px;
+    }
+    @include element('group'){
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 16px;
+    }
+    @include element('btn'){
+        width: 100%;
+    }
+}

@@ -1,0 +1,19 @@
+@include block('select') {
+    display: flex;
+    background-color: $--color-pearly-white-100;
+    border-radius: $--border-radius-1;
+    padding: 8px 16px !important;
+    border: 1px solid $--color-pearly-white-300;
+    box-shadow: $--box-shadow-1;
+    width: 100%;
+    font-size: 18px !important;
+    cursor: pointer;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+
+    &:disabled {
+        background-color: $--color-pearly-white-200;
+        color: $--color-pearly-white-500;
+    }
+}

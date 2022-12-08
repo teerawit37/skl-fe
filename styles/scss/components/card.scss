@@ -1,0 +1,116 @@
+@include block('card') {
+    background-color: $--color-pearly-white-100;
+    // box-shadow: $--box-shadow-2;
+    margin: 8px 0;
+    // border-radius: $--border-radius-1;
+    overflow: hidden;
+    display: flex;
+    border-bottom: 1px solid $--color-pearly-white-200;
+
+    @include media-breakpoint-up('lg') {
+        flex-direction: column;
+        border: none;
+        background-color: $--color-pearly-white-100;
+        // border: 1px solid $--color-pearly-white-300;
+        box-shadow: $--box-shadow-2;
+        margin: 8px 0;
+        border-radius: $--border-radius-1;
+        overflow: hidden;
+    }
+
+    @include element('image-container') {
+        width: 100px;
+        background-color: $--color-primary-2;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include media-breakpoint-up('md') {
+            width: 150px;
+        }
+
+        @include media-breakpoint-up('lg') {
+            width: 100%;
+            height: 160px;
+        }
+    }
+
+    @include element('img') {
+        width: 100%;
+    }
+
+    @include element('container') {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        width: 100%;
+        padding: 8px;
+        justify-content: space-between;
+
+        @include media-breakpoint-up('md') {
+            padding: 16px;
+        }
+    }
+
+    @include element('title') {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        font-size: 14px;
+        height: 21px;
+        color: $--color-aquamarine-600;
+        font-weight: 600;
+        margin-bottom: 4px;
+
+        @include media-breakpoint-up('lg') {
+            font-size: 16px;
+            -webkit-line-clamp: 2;
+            height: 48px;
+        }
+    }
+
+    @include element('label') {
+        font-size: 12px;
+        color: $--color-pearly-white-500;
+
+        @include media-breakpoint-up('lg') {
+            font-size: 14px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+    }
+
+    @include element('notice') {
+        font-size: 10px;
+        color: $--color-pearly-white-500;
+
+        @include media-breakpoint-up('lg') {
+            font-size: 14px;
+        }
+    }
+
+    @include element('time') {
+        font-size: 12px;
+        font-weight: 500;
+        color: $--color-aquamarine-500;
+
+        @include media-breakpoint-up('lg') {
+            font-size: 16px;
+        }
+    }
+
+    @include element('time-container') {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 120px;
+
+        @include media-breakpoint-up('lg') {
+            width: 130px;
+        }
+    }
+}

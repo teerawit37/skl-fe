@@ -1,0 +1,40 @@
+@include block('navbar') {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 16px 0;
+    justify-content: center;
+    background-color: $--color-primary-2;
+
+    @include media-breakpoint-up('md') {
+        justify-content: space-between;
+    }
+
+    @include element('menu-container') {
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+        font-weight: 900;
+    }
+
+    @include element('menu-item') {
+        font-size: 16px;
+        color: $--color-pearly-white-600;
+        padding: 4px 8px;
+        cursor: pointer;
+
+        &:hover {
+            color: $--color-primary-3;
+        }
+
+        @include media-breakpoint-up('md') {
+            font-size: 14px;
+            padding: 4px 16px;
+        }
+
+        @include media-breakpoint-up('lg') {
+            font-size: 16px;
+        }
+    }
+}

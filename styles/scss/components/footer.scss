@@ -1,0 +1,32 @@
+@include block('footer'){
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 32px 0;
+    background-color: $--color-primary-2;
+    position: fixed;
+   left: 0;
+   bottom: 0;
+    @include element('content'){
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    @include element('menu-container'){
+        display: flex;
+        font-weight: 500;
+        justify-content: center;
+    }
+    @include element('menu-item'){
+        font-size: 16px;
+        font-weight: 700;
+        color: $--color-pearly-white-600;
+        padding: 4px 16px;
+        &:hover {
+            color: $--color-pearly-white-100;
+        }
+    }
+}
