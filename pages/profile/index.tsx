@@ -65,6 +65,7 @@ const genderList = [
 function Profile() {
     const [id, setId] = useState<string>('')
     const [img, setImg] = useState<string>('')
+    
     const { value: firstname, onChange: onFirstNameChange, setInitailValue: setFirstName } = useInput('');
     const { value: lastname, onChange: onLastNameChange, setInitailValue: setLastName } = useInput('');
     const { value: nickname, onChange: onNickNameChange, setInitailValue: setNickname } = useInput('');
@@ -128,6 +129,7 @@ function Profile() {
                 fetchProfile()
                 toast.success('Profile updated')
             }
+            // User profile image source convert to base64 before push to database (It's best to keep it in the cloud storage. And access with id)
         )
     }
 
