@@ -36,19 +36,20 @@
 
     @include element('image-container') {
         width: 100px;
-        background-color: $--color-primary-2;
+        height: 100px;
+        background-color: $--color-pearly-white-200;
         overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
 
         @include media-breakpoint-up('md') {
-            width: 150px;
+            width: 145px;
         }
 
         @include media-breakpoint-up('lg') {
             width: 100%;
-            height: 160px;
+            height: 145px;
         }
     }
 
