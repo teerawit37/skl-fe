@@ -22,7 +22,7 @@ function Home() {
           <p>Need to have login page for fill username, password for access into the system, it should not allow pages for guests</p>
           <p>Student</p>
           <p>able to search course by time, name that user looking for</p>
-          <p>don't allow to create course</p>
+          <p>don&apos;t allow to create course</p>
           <p>Instructor</p>
           <p>able to search course by time, name for check existed courses</p>
           <p>able to create course by fill name, description, category, image, subject, start-end time, number of student</p>

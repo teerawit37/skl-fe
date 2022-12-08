@@ -1,6 +1,7 @@
 import Router, { useRouter } from "next/router";
 import Image from 'next/image';
 import AuthService from '../../services/auth.service';
+import Link from "next/link";
 
 const Navbar = () => {
     const router = useRouter();
@@ -13,9 +14,9 @@ const Navbar = () => {
             <div className="container">
                 <div className="skl-navbar__menu-container">
                     <div className="d-flex">
-                    <a href="/" className="skl-navbar__menu-item">home</a>
-                    <a href="/course" className="skl-navbar__menu-item">course</a>
-                    <a href="/profile" className="skl-navbar__menu-item">profile</a>
+                        <Link href="/" className="skl-navbar__menu-item">home</Link>
+                        <Link href="/course" className="skl-navbar__menu-item">course</Link>
+                        <Link href="/profile" className="skl-navbar__menu-item">profile</Link>
                     </div>
 
                     <div onClick={handleLogout} className="skl-navbar__menu-item">logout</div>

@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import Image from 'next/image';
+import Link from "next/link";
 
 const Footer = () => {
     return (
@@ -7,9 +8,9 @@ const Footer = () => {
             <div className="container">
                 <div className="skl-footer__content">
                     <div className="skl-footer__menu-container">
-                        <a href="/" className="skl-footer__menu-item">home</a>
-                        <a href="/course" className="skl-footer__menu-item">course</a>
-                        <a href="/profile" className="skl-footer__menu-item">profile</a>
+                        <Link href="/" className="skl-footer__menu-item">home</Link>
+                        <Link href="/course" className="skl-footer__menu-item">course</Link>
+                        <Link href="/profile" className="skl-footer__menu-item">profile</Link>
                     </div>
                 </div>
             </div>
