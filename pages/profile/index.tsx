@@ -75,28 +75,27 @@ function Profile() {
     const { value: isEditGender, onClick: toggleEditGender } = useToggle(false);
 
     const fetchProfile = () => {
-        console.log('test')
-        // UserService.getProfile().then(
-        //     (res) => {
-        //         const data = res.data[0];
-        //         setFirstName(data.firstname)
-        //         setLastName(data.lastname)
-        //         setNickname(data.nickname)
-        //         setUniversity(data.university)
-        //         setGender(data.gender)
-        //         setRole(data.role)
-        //         setId(data._id)
-        //         setImg(data.img)
-        //         if (data.birthday !== '') {
-        //             const day = dayjs(data.birthday).format(dateFormat)
-        //             setBirthday(day)
-        //         } else {
-        //             const current = new Date();
-        //             const day = dayjs(current).format(dateFormat)
-        //             setBirthday(day)
-        //         }
-        //     }
-        // )
+        UserService.getProfile().then(
+            (res) => {
+                const data = res.data[0];
+                setFirstName(data.firstname)
+                setLastName(data.lastname)
+                setNickname(data.nickname)
+                setUniversity(data.university)
+                setGender(data.gender)
+                setRole(data.role)
+                setId(data._id)
+                setImg(data.img)
+                if (data.birthday !== '') {
+                    const day = dayjs(data.birthday).format(dateFormat)
+                    setBirthday(day)
+                } else {
+                    const current = new Date();
+                    const day = dayjs(current).format(dateFormat)
+                    setBirthday(day)
+                }
+            }
+        )
     }
 
     const handleUpdateProfile = () => {
@@ -235,3 +234,17 @@ function Profile() {
 Profile.layout = AppLayout
 
 export default Profile;
+export async function getServerSideProps(context: any) {
+    const user = context.req.cookies.access_token;
+    if (user === undefined) {
+        return {
+            redirect: {
+                destination: '/signin',
+                permanent: false,
+            },
+        }
+    }
+    return {
+        props: {}, // will be passed to the page component as props
+    }
+}

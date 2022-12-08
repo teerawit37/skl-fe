@@ -61,7 +61,15 @@ Home.layout = AppLayout
 export default Home;
 
 export async function getServerSideProps(context: any) {
-  console.log(context.req.cookies)
+  const user = context.req.cookies.access_token;
+  if(user === undefined){
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false,
+      },
+    }
+  }
   return {
     props: {}, // will be passed to the page component as props
   }

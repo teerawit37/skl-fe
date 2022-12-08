@@ -59,19 +59,18 @@ function CreateCourse() {
     const [end, setEnd] = useState<string>('');
 
     const fetchProfile = () => {
-        console.log('test')
-        // UserService.getProfile().then(
-        //     (res) => {
-        //         const data = res.data[0];
-        //         setFirstName(data.firstname)
-        //         setLastName(data.lastname)
-        //         setNickname(data.nickname)
-        //         setUniversity(data.university)
-        //         setRole(data.role)
-        //         setId(data._id)
-        //         setImg(data.img)
-        //     }
-        // )
+        UserService.getProfile().then(
+            (res) => {
+                const data = res.data[0];
+                setFirstName(data.firstname)
+                setLastName(data.lastname)
+                setNickname(data.nickname)
+                setUniversity(data.university)
+                setRole(data.role)
+                setId(data._id)
+                setImg(data.img)
+            }
+        )
     }
 
     const handleCreateCourse = () => {
@@ -161,3 +160,18 @@ function CreateCourse() {
 CreateCourse.layout = AppLayout
 
 export default CreateCourse;
+
+export async function getServerSideProps(context: any) {
+    const user = context.req.cookies.access_token;
+    if(user === undefined){
+      return {
+        redirect: {
+          destination: '/signin',
+          permanent: false,
+        },
+      }
+    }
+    return {
+      props: {}, // will be passed to the page component as props
+    }
+  }

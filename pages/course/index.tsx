@@ -27,13 +27,12 @@ function Course() {
     }
 
     const fetchCourseList = () => {
-        console.log('test')
-        // CourseService.getCourseList().then(
-        //     (res) => {
-        //         setFullCourseList(res.data)
-        //         setCourseList(res.data)
-        //     }
-        // )
+        CourseService.getCourseList().then(
+            (res) => {
+                setFullCourseList(res.data)
+                setCourseList(res.data)
+            }
+        )
     }
 
     useEffect(() => {
@@ -92,3 +91,18 @@ function Course() {
 Course.layout = AppLayout
 
 export default Course;
+
+export async function getServerSideProps(context: any) {
+    const user = context.req.cookies.access_token;
+    if(user === undefined){
+      return {
+        redirect: {
+          destination: '/signin',
+          permanent: false,
+        },
+      }
+    }
+    return {
+      props: {}, // will be passed to the page component as props
+    }
+  }

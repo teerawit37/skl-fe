@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 
@@ -7,10 +8,11 @@ class AuthService {
         return axios
             .post(API_URL + "auth/signin", {
                 username, password
-            })
+            }, { withCredentials: true })
             .then(response => {
                 if (response.data.token) {
-                    localStorage.setItem("user", JSON.stringify(response.data));
+                    // localStorage.setItem("user", JSON.stringify(response.data));
+                    Cookies.set('access_token', response.data.token)
                 }
                 return response.data;
             });
